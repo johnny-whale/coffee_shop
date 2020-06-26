@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Form} from "react-bootstrap";
-import {message, Input, Select, Popover} from 'antd';
+import {message, Input, Select, Popover, Badge} from 'antd';
+import {NavLink} from "react-router-dom";
 
 class Catalog extends Component {
 
@@ -26,30 +27,34 @@ class Catalog extends Component {
                                     <Form.Label>
                                         Type
                                     </Form.Label>
-                                    <Select defaultValue="lucy">
-                                        <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="Yiminghe">yiminghe</Option>
+                                    <Select defaultValue="Arabica">
+                                        <Option value="Arabica">Arabica</Option>
+                                        <Option value="Robusta">Robusta</Option>
+                                        <Option value="Mixed">Mixed</Option>
+                                        <Option value="Mixed Arabica">Mixed Arabica</Option>
                                     </Select>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>
                                         Processing
                                     </Form.Label>
-                                    <Select defaultValue="lucy">
-                                        <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="Yiminghe">yiminghe</Option>
+                                    <Select defaultValue="Dry">
+                                        <Option value="Dry">Dry</Option>
+                                        <Option value="Washed">Washed</Option>
+                                        <Option value="Others">Others</Option>
                                     </Select>
                                 </Form.Group>
                                 <Form.Group>
                                     <Form.Label>
                                         Geography
                                     </Form.Label>
-                                    <Select defaultValue="lucy">
-                                        <Option value="jack">Jack</Option>
-                                        <Option value="lucy">Lucy</Option>
-                                        <Option value="Yiminghe">yiminghe</Option>
+                                    <Select defaultValue="Africa">
+                                        <Option value="Africa">Africa</Option>
+                                        <Option value="Yemen">Yemen</Option>
+                                        <Option value="Uganda">Uganda</Option>
+                                        <Option value="Asia">Asia</Option>
+                                        <Option value="North America">North America</Option>
+                                        <Option value="South America">South America</Option>
                                     </Select>
                                 </Form.Group>
                             </Form>
@@ -57,14 +62,17 @@ class Catalog extends Component {
                         <div className="Catalog__content container-fluid col-lg-9">
                             <div className="row">
                                 <div className="Catalog__content_header col-lg-12">
-                                    <h5>Hello, Sean</h5>
+                                    <div className="enter">
+                                        <NavLink to={'/signIn'}>Sing in</NavLink>
+                                        <NavLink to={'/signUp'}>Sing up</NavLink>
+                                    </div>
                                     <Popover
                                         placement="rightBottom"
                                         content={
                                             <div className="card">
                                                 <div className="card-header">
                                                     <p>My cart</p>
-                                                    <p>2 items</p>
+                                                    <p>5 items</p>
                                                 </div>
                                                 <div className="card-body">
                                                     sdfsdf
@@ -76,7 +84,11 @@ class Catalog extends Component {
                                         }
                                         trigger="click"
                                     >
-                                        <a href="/"><i className="fas fa-shopping-cart"/></a>
+                                        <Badge count={5} className={'cart'}>
+                                            <a href="/" className="head-example">
+                                                <i className="fas fa-shopping-cart"/>
+                                            </a>
+                                        </Badge>
                                     </Popover>
                                 </div>
                             </div>
