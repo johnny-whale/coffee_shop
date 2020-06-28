@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Button, message} from "antd";
 import {Col, Form, Modal} from "react-bootstrap";
+import {connect} from "react-redux";
+import {renderItems} from "../../../store/actions/mainActions";
 
 class AdminPanelItem extends Component {
 
@@ -20,6 +22,7 @@ class AdminPanelItem extends Component {
         event.preventDefault();
         try {
             await axios.delete(`https://coffee-shop-f5204.firebaseio.com/items/${this.props.id}.json`);
+            this.props.renderItems();
             message.success('Item was successfully deleted');
         } catch (e) {
             console.log(e)
@@ -64,6 +67,7 @@ class AdminPanelItem extends Component {
                 itemPrice: this.state.price || this.props.price
             });
             this.setState({showEdit: false});
+            this.props.renderItems();
             message.success('Item was successfully edited');
         } catch (e) {
             console.log(e)
@@ -154,4 +158,16 @@ class AdminPanelItem extends Component {
     }
 }
 
-export default AdminPanelItem;
+function mapStateToProps(state) {
+    return {
+        items: state.mainReducer.items
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        renderItems: () => dispatch(renderItems())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPanelItem);

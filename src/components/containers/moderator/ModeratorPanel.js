@@ -13,23 +13,15 @@ class ModeratorPanel extends Component {
                         <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Type</th>
-                            <th>Processing</th>
-                            <th>Geography</th>
-                            <th>Count</th>
                             <th>Price</th>
-                            <th>Actions</th>
+                            <th>Date</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>dssdf</td>
-                            <td>dssdf</td>
-                            <td>dssdf</td>
-                            <td>dssdf</td>
-                            <td>dssdf</td>
-                            <td>dssdf</td>
-                            <td>dssdf</td>
+                            <td>Bushido</td>
+                            <td>25</td>
+                            <td>27 June, 2020</td>
                         </tr>
                         </tbody>
                     </Table>

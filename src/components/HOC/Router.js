@@ -1,13 +1,15 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import AdminPanel from "../containers/admin/AdminPanel";
-import {Intro} from "../Intro";
-import Catalog from "../Catalog";
-import SignIn from "../containers/user/SignIn";
-import SignUp from "../containers/user/SignUp";
+import {Intro} from "../main/Intro";
+import Catalog from "../main/catalog/Catalog";
 import AdminEnter from "../containers/admin/AdminEnter";
 import ModeratorEnter from "../containers/moderator/ModeratorEnter";
 import ModeratorPanel from "../containers/moderator/ModeratorPanel";
+import SignIn from "../containers/user/SignIn";
+import SignUp from "../containers/user/SignUp";
+import Cabinet from "../containers/user/Cabinet";
+import Dashboard from "../containers/dashboard/Dashboard";
 
 export const Router = () => {
   return (
@@ -19,11 +21,14 @@ export const Router = () => {
           <Route path={'/catalog'}>
               <Catalog />
           </Route>
-          <Route path={'/signIn'}>
+          <Route path={'/login'}>
               <SignIn />
           </Route>
-          <Route path={'/signUp'}>
+          <Route path={'/reg'}>
               <SignUp />
+          </Route>
+          <Route path={'/cabinet'}>
+              <Cabinet />
           </Route>
           {/*Admin Routes*/}
           <Route path={'/adminEnter'}>
@@ -38,6 +43,10 @@ export const Router = () => {
           </Route>
           <Route path={'/moderPanel'}>
               <ModeratorPanel />
+          </Route>
+
+          <Route path={'/dashboard'}>
+              <Dashboard />
           </Route>
       </Switch>
   )

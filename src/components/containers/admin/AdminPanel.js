@@ -3,6 +3,8 @@ import {Button, message} from 'antd';
 import {Form, Modal, Col, Table} from "react-bootstrap";
 import axios from 'axios';
 import AdminPanelItem from "./AdminPanelItem";
+import {connect} from "react-redux";
+import {renderItems} from "../../../store/actions/mainActions";
 
 class AdminPanel extends Component {
 
@@ -17,25 +19,8 @@ class AdminPanel extends Component {
         items: []
     };
 
-    async componentDidMount() {
-        try {
-            const response = await axios.get('https://coffee-shop-f5204.firebaseio.com/items.json');
-            const items = Object.entries(response.data).map((item) => {
-                return {
-                    key: item[0],
-                    name: item[1].itemName,
-                    id: item[0],
-                    type: item[1].itemType,
-                    processing: item[1].itemProcessing,
-                    geography: item[1].itemGeography,
-                    count: item[1].itemCount,
-                    price: item[1].itemPrice,
-                }
-            });
-            this.setState({items})
-        } catch (e) {
-            console.log(e)
-        }
+    componentDidMount() {
+        this.props.renderItems()
     }
 
     onAddItem = () => {
@@ -77,6 +62,7 @@ class AdminPanel extends Component {
             });
             this.setState({showAdd: false});
             message.success('Item was successfully add');
+            this.props.renderItems();
         } catch (e) {
             console.log(e)
         }
@@ -179,7 +165,7 @@ class AdminPanel extends Component {
                         </tr>
                         </thead>
                         <tbody>
-                        {this.state.items.map((item, index) => {
+                        {this.props.items.map((item, index) => {
                             return (
                                 <AdminPanelItem
                                     key={item+index}
@@ -201,4 +187,16 @@ class AdminPanel extends Component {
     }
 }
 
-export default AdminPanel;
+function mapStateToProps(state) {
+    return {
+        items: state.mainReducer.items
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        renderItems: () => dispatch(renderItems())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPanel);
