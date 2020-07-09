@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "coffee-shop-f5204",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
